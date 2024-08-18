@@ -1,14 +1,15 @@
-import React from "react";
+// import React, {useState} from "react";
 
 
-const NextPage = () => {
-    return (
-        <div>
-            <button>Prev</button>
-            <button>Next</button>
+// const NextPage = () => {
+// const [pageNumber, setPageNumber] = useState(1)
+//     return (
+//         <div>
+//             <button>Prev</button>
+//             <button>Next</button>
             
-        </div>
-    )
-}
+//         </div>
+//     )
+// }
 
-export default NextPage
+// export default NextPage
