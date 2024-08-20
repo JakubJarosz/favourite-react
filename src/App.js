@@ -1,25 +1,23 @@
 
 import './App.css';
-import PopularMovies from './components/PopularMovies';
-import NextPage from './components/NextPage'
+import PopularMoviesPage from './pages/PopularMoviesPage';
+import Pagination from './components/Pagination'
 import React, {useState} from 'react';
+import TopRatedMoviesPage from './pages/TopRatedMoviesPage';
+import MainPage from './pages/MainPage';
+import { Route, Routes } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 function App() {
-  const [pageNumber, setPageNumber] = useState(1)
-
-  const btnNext = () => {
-    setPageNumber(pageNumber+1)
-  }
-
   return (
-    <div className="App">
-     <PopularMovies/>
-    <div>
-      <button>Prev</button>
-      <button onClick={() => btnNext()}>Next</button>
-      <p>Page: {pageNumber}</p>
-    </div>
-    </div>
+    <>
+     <Routes>
+      <Route path='/' element={<MainPage/>}/>
+      {/* <Route path='/popular-movies' element={<PopularMoviesPage/>}/> */}
+      {/* <Route path='/top-rated-movies/' element={<TopRatedMoviesPage/>}/> */}
+     </Routes>
+     <button></button>
+     </>
   );
 }
 
