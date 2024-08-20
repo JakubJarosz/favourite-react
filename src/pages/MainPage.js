@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import FilterType from "../components/FilterType";
 import Pagination from "../components/Pagination";
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import api from "../API/api";
 import PopularMoviesPage from "./PopularMoviesPage";
 
@@ -9,6 +9,7 @@ import PopularMoviesPage from "./PopularMoviesPage";
     const [searchParams] = useSearchParams();
     const page = parseInt(searchParams.get('page') || '1', 10);
     const [popMoviesList, setPopMoviesList] = useState([]);
+    const navigate = useNavigate();
 
 
     useEffect(() => {

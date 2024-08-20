@@ -1,15 +1,16 @@
 import React, {useState, useEffect} from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 
 const Pagination = ({prevBtn, btnNext, pageNumber}) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
+  const navigate = useNavigate();
 
 
   const handleBtn = (page) => {
     if (page >= 1) {
-      setSearchParams({page: page.toString()})
+      setSearchParams({page: page.toString()});
     }
   }
 
