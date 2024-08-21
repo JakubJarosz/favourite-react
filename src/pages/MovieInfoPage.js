@@ -18,7 +18,7 @@ const MovieInfoPage = () => {
         return detailsItem.genres.map((el) => <li>{el.name}</li>)
     } 
 }
-  
+  console.log(detailsItem)
 
     const fetchId = async () => {
         try {
@@ -30,11 +30,13 @@ const MovieInfoPage = () => {
     }
     return (
         <div>
-            <img src={`https://image.tmdb.org/t/p/w500/${detailsItem.poster_path}`} alt="ss" width="50" height="60"/>
+            <img src={`https://image.tmdb.org/t/p/w500/${detailsItem.poster_path}`} alt="ss" width="500" height="600"/>
             <div>
+                Genres:
                 {renderFunc()}
             </div>
-            <p>ID: {id}</p>
+            <div>Relesa Date: {detailsItem.release_date}</div>
+            <div>Overview: {detailsItem.overview}</div>
         </div>
     )
 }
