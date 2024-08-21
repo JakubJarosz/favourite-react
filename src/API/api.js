@@ -17,8 +17,18 @@ export const fetchTopRatedMovies = (page) => {
   return axios.get(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`,options)
 }
 
+export const fetchInputMovies = (page, query) => {
+  return axios.get(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`,options)
+}
+
+export const fetchById = (id) => {
+  return axios.get(`https://api.themoviedb.org/3/movie/${id}?language=en-US`,options)
+}
+
 
 export default {
     fetchPopularMovies,
-    fetchTopRatedMovies
+    fetchTopRatedMovies,
+    fetchInputMovies,
+    fetchById
 }
