@@ -1,19 +1,24 @@
 import React, {useEffect, useState} from "react";
 import FilterType from "../components/FilterType";
 import Pagination from "../components/Pagination";
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams} from 'react-router-dom';
 import api from "../API/api";
 import PopularMoviesPage from "./PopularMoviesPage";
+import TopRatedMoviesPage from "./TopRatedMoviesPage"
 
  const MainPage = () => {
     const [searchParams] = useSearchParams();
     const page = parseInt(searchParams.get('page') || '1', 10);
     const [popMoviesList, setPopMoviesList] = useState([]);
-    const navigate = useNavigate();
+    const [topRatedMovieList, setTopRatedMovieList] = useState([]);
+    const filter = searchParams.get("filter")
+
 
 
     useEffect(() => {
         fetchApiPopMovies();
+        fetchTRMovies();
+        console.log(filter)
        }, [page])
    
        const fetchApiPopMovies = async () => {
@@ -24,7 +29,16 @@ import PopularMoviesPage from "./PopularMoviesPage";
            console.log(error)
          }
        }
-   console.log(searchParams.get('page'))
+       const fetchTRMovies = async () => {
+        try {
+          const topRMovies = await api.fetchTopRatedMovies(page)
+          setTopRatedMovieList(topRMovies.data.results)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      // top-rated-movies
+   
     return (
         <div>
             <FilterType/>
@@ -32,9 +46,15 @@ import PopularMoviesPage from "./PopularMoviesPage";
          <h1>Discover your favourite movies</h1>
         </div>
         <div>
-         <PopularMoviesPage
-         popMoviesList={popMoviesList}
-         />
+
+        {filter === "popular-movies" ? 
+    (<PopularMoviesPage
+      popMoviesList={popMoviesList}
+      />) :filter === "top-rated-movies" ?(<TopRatedMoviesPage
+        topRatedMovieList={topRatedMovieList}
+        />) : (<h1></h1>)
+    }
+    
         </div>
         <div>
      <Pagination/>
